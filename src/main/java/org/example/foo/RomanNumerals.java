@@ -1,6 +1,10 @@
 package org.example.foo;
 
 
+import java.util.StringJoiner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RomanNumerals {
 
     // toRoman method
@@ -68,6 +72,21 @@ public class RomanNumerals {
 
     // TODO: FromRoman method
     public static int fromRoman(String romanNumeral) {
-        return 2800/1000;
+//        Pattern p = Pattern.compile("(^M*)");
+//        Matcher thousand = p.matcher(romanNumeral);
+//        System.out.println(thousand.find());
+//        Pattern p = Pattern.compile("(^M{0,3})(C|CC|CCC|CD|D|DC|DCC|DCCC|CM)");
+        Pattern p = Pattern.compile("(^M{0,3})(CM|DCCC|DCC|DC|D|CD|CCC|CC|C)?(.*)");
+        Matcher thousand = p.matcher("MDCCCLXVI");
+        System.out.println(thousand.matches());
+        System.out.println(thousand.group(1));
+        System.out.println(thousand.group(2));
+        System.out.println(thousand.group(3));
+//        final int thousand = // RegEx pour les milliers : "(^M*)";
+//        final int hundred = ((n - thousand) / 100) * 100;
+//        final int ten = (((n - thousand) - hundred) / 10) * 10;
+//        final int decimal = (((n - thousand) - hundred) - ten);
+
+        return 1;
     }
 }

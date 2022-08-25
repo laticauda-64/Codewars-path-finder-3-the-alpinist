@@ -14,7 +14,11 @@ public class RomanNumeralsTest {
         assertEquals("MCDL", RomanNumerals.toRoman(1450));
         assertEquals("MM", RomanNumerals.toRoman(2000));
         assertEquals("MMMCMXCIX", RomanNumerals.toRoman(3999));
+    }
 
+    @Test
+    void testRomanToInt() {
+        assertEquals(3, RomanNumerals.fromRoman("III"));
     }
 
 }
