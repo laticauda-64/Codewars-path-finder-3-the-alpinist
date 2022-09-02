@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd817923-b74e-4b66-8fda-96d56f1d3a91" name="Changes" comment="RomanNumerals : first method ok :)">
+    <list default="true" id="bd817923-b74e-4b66-8fda-96d56f1d3a91" name="Changes" comment="RomanNumerals : second method on good way">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/foo/RomanNumerals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/foo/RomanNumerals.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/RomanNumeralsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RomanNumeralsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/foo/RomanNumerals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/RomanNumeralsTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,10 +85,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GoodVsEvilTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FinderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PremierWithTests" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GoodVsEvilTest" />
+      <option name="MAIN_CLASS_NAME" value="FinderTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -125,10 +125,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.FinderTest" />
         <item itemvalue="JUnit.RomanNumeralsTest" />
         <item itemvalue="JUnit.RomanNumeralsTest.testIntToRoman" />
         <item itemvalue="JUnit.SolutionTest" />
-        <item itemvalue="JUnit.GoodVsEvilTest" />
       </list>
     </recent_temporary>
   </component>
@@ -155,7 +155,11 @@
       <workItem from="1661327384930" duration="14000" />
       <workItem from="1661436767515" duration="4629000" />
       <workItem from="1661441426827" duration="1448000" />
-      <workItem from="1661455947428" duration="3260000" />
+      <workItem from="1661455947428" duration="7431000" />
+      <workItem from="1661577640643" duration="1308000" />
+      <workItem from="1661663927750" duration="4079000" />
+      <workItem from="1661691963904" duration="1013000" />
+      <workItem from="1662011522425" duration="11396000" />
     </task>
     <task id="LOCAL-00001" summary="Premier commit">
       <created>1660715775368</created>
@@ -178,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661441950597</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="RomanNumerals : second method on good way">
+      <created>1661459516572</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1661459516572</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,13 +216,28 @@
     <MESSAGE value="Premier commit" />
     <MESSAGE value="Cfg files" />
     <MESSAGE value="RomanNumerals : first method ok :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="RomanNumerals : first method ok :)" />
+    <MESSAGE value="RomanNumerals : second method on good way" />
+    <option name="LAST_COMMIT_MESSAGE" value="RomanNumerals : second method on good way" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/foo/Finder.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="numToObject.get(2)" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PremierWithTests$Main.ic" NAME="Main Coverage Results" MODIFIED="1662124389492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.example.*</FILTER>
+    </SUITE>
   </component>
 </project>
