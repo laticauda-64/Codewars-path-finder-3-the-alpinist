@@ -3,8 +3,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-// TODO: Replace examples and use TDD development by writing your own tests
-
 public class FinderTest {
 
     @Test

@@ -34,6 +34,23 @@ public class Finder {
 
     public static ArrayList<Node> path;
 
+    public ArrayList<Node> getNeighbours(Node node, Node[][] nodeArray) {
+        ArrayList<Node> neighbours = new ArrayList<>();
+
+        // Get neighbours while staying in the boundaries of the grid
+
+        // Up
+        if(node.gridY - 1 >= 0) neighbours.add(nodeArray[node.gridX][node.gridY - 1]);
+        // Down
+        if(node.gridY + 1 <= nodeArray.length) neighbours.add(nodeArray[node.gridX][node.gridY + 1]);
+        // Left
+        if(node.gridX - 1 >= 0) neighbours.add(nodeArray[node.gridX - 1][node.gridY]);
+        // Right
+        if(node.gridX + 1 <= nodeArray[0].length) neighbours.add(nodeArray[node.gridX + 1][node.gridY]);
+
+        return neighbours;
+    }
+
     // Path reconstruct
     public static void retracePath(Node startNode, Node endNode) {
         ArrayList<Node> path = new ArrayList<>();
@@ -92,6 +109,32 @@ public class Finder {
         System.out.println(Arrays.deepToString(mazeRepresentation));
 
         // TODO: Build a search algo
+
+        ArrayList<Node> openSet = new ArrayList<>();
+        ArrayList<Node> closedSet = new ArrayList<>();
+        openSet.add(mapStartNode);
+
+        while(openSet.size() > 0) {
+            // Put starting node in the openSet
+            Node currentNode = openSet.get(0);
+            // Check for node with the lower fCost, if equality check for the lowest hCost
+            for (int i = 1; i < openSet.size(); i++) {
+                if(openSet.get(i).fCost() < currentNode.fCost() || openSet.get(i).fCost() == currentNode.fCost() && openSet.get(i).hCost < currentNode.hCost) {
+                    currentNode = openSet.get(i);
+                }
+            }
+
+            openSet.remove(currentNode);
+            closedSet.add(currentNode);
+
+            // Check if we find the exit
+            if (currentNode == mapExitNode) {
+                break;
+            }
+
+            // Check for neighbours
+
+        }
 
 
         return false;
