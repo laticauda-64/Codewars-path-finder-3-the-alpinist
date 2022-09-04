@@ -76,7 +76,7 @@ public class Finder {
 
 
     // Main function
-    public static boolean pathFinder(String maze) {
+    public static int pathFinder(String maze) {
 
         // Variables
         String[][] mazeRepresentation = to2dim(maze, "\n", "");
@@ -104,13 +104,14 @@ public class Finder {
 
             // Check if we find the exit
             if (currentNode == mapExitNode) {
-                return true;
+                retracePath(mapStartNode, mapExitNode);
+                return path.size();
             }
 
             // Check for neighbours
             for (Node neighbour :
                     getNeighbours(currentNode, nodeArray)) {
-                if (!neighbour.walkable || closedSet.contains(neighbour)) {
+                if (closedSet.contains(neighbour)) {
                     continue;
                 }
                 int newMovementCostToNeighbour = currentNode.gCost + getDistance(currentNode, neighbour);
@@ -128,7 +129,7 @@ public class Finder {
         }
 
 
-        return false;
+        return -1;
     }
 
 

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FinderTest {
 
-    private static String a,b,c,d,e,f;
+    private static String a, b, c, d, e, f;
     private static Node[][] gridB, gridE;
     private static Node selectedNode;
 
@@ -20,35 +20,35 @@ public class FinderTest {
 
         // Mazes
         a = ".W.\n" +
-            ".W.\n" +
-            "...";
+                ".W.\n" +
+                "...";
 
         b = ".W.\n" +
-            ".W.\n" +
-            "W..";
+                ".W.\n" +
+                "W..";
 
         c = "......\n" +
-            "......\n" +
-            "......\n" +
-            "......\n" +
-            "......\n" +
-            "......";
+                "......\n" +
+                "......\n" +
+                "......\n" +
+                "......\n" +
+                "......";
 
         d = "......\n" +
-            "......\n" +
-            "......\n" +
-            "......\n" +
-            ".....W\n" +
-            "....W.";
+                "......\n" +
+                "......\n" +
+                "......\n" +
+                ".....W\n" +
+                "....W.";
 
         e = "......\n" +
-            "......\n" +
-            "...W..\n" +
-            ".WWWW.\n" +
-            "......\n" +
-            "......\n";
+                "......\n" +
+                "...W..\n" +
+                ".WWWW.\n" +
+                "......\n" +
+                "......\n";
 
-        f =     ".W...W\n" +
+        f = ".W...W\n" +
                 ".W.W.W\n" +
                 ".W.W.W\n" +
                 ".W.W.W\n" +
@@ -61,10 +61,11 @@ public class FinderTest {
 
     // Check getNeighbours method
     // Should retrieve neighbours while staying in the boundaries of the grid
-    @Test void getNeighboursTest() {
+    @Test
+    void getNeighboursTest() {
 
-        selectedNode = new Node(true, new int[]{2,2}, 2, 2);
-        Node[]correctNeighbours = {gridE[1][2], gridE[3][2], gridE[2][1], gridE[2][3]};
+        selectedNode = new Node(true, new int[]{2, 2}, 2, 2);
+        Node[] correctNeighbours = {gridE[1][2], gridE[3][2], gridE[2][1], gridE[2][3]};
 
         ArrayList<Node> neighBoorsList = Finder.getNeighbours(selectedNode, gridE);
 
@@ -72,19 +73,20 @@ public class FinderTest {
         assertThat(neighBoorsList).doesNotContain(gridE[0][0]);
 
         // Nodes on the edge should have 3 neighbours
-        selectedNode = new Node(true, new int[]{3,5}, 5, 3);
+        selectedNode = new Node(true, new int[]{3, 5}, 5, 3);
         assertThat(Finder.getNeighbours(selectedNode, gridE)).hasSize(3);
 
         // and 2 for nodes in corners
-        selectedNode = new Node(true, new int[]{5,0}, 0, 5);
+        selectedNode = new Node(true, new int[]{5, 0}, 0, 5);
         assertThat(Finder.getNeighbours(selectedNode, gridE)).hasSize(2);
 
 
     }
 
     // Check if distances between two nodes correct
-    @Test void getDistanceTest() {
-        Node    nodeStart = gridE[0][0],
+    @Test
+    void getDistanceTest() {
+        Node nodeStart = gridE[0][0],
                 nodeA = gridE[1][3],
                 nodeB = gridE[3][5],
                 nodeC = gridE[5][1],
@@ -101,12 +103,32 @@ public class FinderTest {
     @Test
     public void sampleTests() {
 
-        assertEquals(true,  Finder.pathFinder(a));
-        assertEquals(false, Finder.pathFinder(b));
-        assertEquals(true,  Finder.pathFinder(c));
-        assertEquals(false, Finder.pathFinder(d));
-        assertEquals(true, Finder.pathFinder(e));
-        assertEquals(true, Finder.pathFinder(f));
-    }
-}
+        String a = ".W.\n" +
+                ".W.\n" +
+                "...",
 
+                b = ".W.\n" +
+                        ".W.\n" +
+                        "W..",
+
+                c = "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......",
+
+                d = "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        "......\n" +
+                        ".....W\n" +
+                        "....W.";
+
+        assertEquals(4, Finder.pathFinder(a));
+        assertEquals(-1, Finder.pathFinder(b));
+        assertEquals(10, Finder.pathFinder(c));
+        assertEquals(-1, Finder.pathFinder(d));
+    }
+
+}
