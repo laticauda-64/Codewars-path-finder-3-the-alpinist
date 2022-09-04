@@ -134,3 +134,7 @@ public class Finder {
 
 
 }
+
+
+// TODO:      -Attribuer un "cout" à chaque node lors de la transformation de la grille en nodes.
+//            - Recalculer les distances en tenant compte du nouveau système (getDistance)
