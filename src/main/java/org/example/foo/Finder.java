@@ -67,7 +67,7 @@ public class Finder {
 
         for (int i = 0; i < source.length; i++) {
             for (int j = 0; j < source[i].length; j++) {
-                result[i][j] = new Node((source[i][j].equals(".")) ? true : false, new int[]{j,i}, j, i);
+                result[i][j] = new Node(Integer.parseInt(source[i][j]), new int[]{j,i}, j, i);
             }
         }
         return result;
@@ -136,5 +136,6 @@ public class Finder {
 }
 
 
-// TODO:      -Attribuer un "cout" à chaque node lors de la transformation de la grille en nodes.
-//            - Recalculer les distances en tenant compte du nouveau système (getDistance)
+// TODO:      [x] - Attribuer un "cout" à chaque node lors de la transformation de la grille en nodes.
+//            [] - Recalculer les distances en tenant compte du nouveau système (getDistance)
+//              [] - Choisir le chemin le moins couteux
