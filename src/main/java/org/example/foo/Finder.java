@@ -1,52 +1,32 @@
 package org.example.foo;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-
-// Node definition
-class Node {
-
-    public boolean walkable;
-    public int[] gridPosition;
-    public int gridX;
-    public int gridY;
-
-    public int gCost;
-    public int hCost;
-    public Node parent;
-
-    // Constructor
-    public Node(boolean walkable, int[] gridPosition, int gridX, int gridY) {
-        this.walkable = walkable;
-        this.gridPosition = gridPosition;
-        this.gridX = gridX;
-        this.gridY = gridY;
-    }
-
-    public int fCost() {
-        return gCost + hCost;
-    }
-}
 
 public class Finder {
 
     public static ArrayList<Node> path;
 
-    public ArrayList<Node> getNeighbours(Node node, Node[][] nodeArray) {
+    // Get distance between two points with one of the four cardinal directions (i.e. North, East, South, West) possible
+    public static int getDistance(Node nodeA, Node nodeB) {
+            return (Math.abs((nodeA.gridX - nodeB.gridX)) + Math.abs((nodeA.gridY - nodeB.gridY)));
+    }
+
+    public static ArrayList<Node> getNeighbours(Node node, Node[][] nodeArray) {
         ArrayList<Node> neighbours = new ArrayList<>();
 
-        // Get neighbours while staying in the boundaries of the grid
+        // Constants
+        final int GRID_MAX_DEPTH_X = nodeArray[0].length - 1; // Each line have same size
+        final int GRID_MAX_DEPTH_Y = nodeArray.length - 1;
 
         // Up
-        if(node.gridY - 1 >= 0) neighbours.add(nodeArray[node.gridX][node.gridY - 1]);
+        if(node.gridY - 1 >= 0) neighbours.add(nodeArray[node.gridY - 1][node.gridX]);
         // Down
-        if(node.gridY + 1 <= nodeArray.length) neighbours.add(nodeArray[node.gridX][node.gridY + 1]);
+        if(node.gridY + 1 <= GRID_MAX_DEPTH_Y) neighbours.add(nodeArray[node.gridY + 1][node.gridX]);
         // Left
-        if(node.gridX - 1 >= 0) neighbours.add(nodeArray[node.gridX - 1][node.gridY]);
+        if(node.gridX - 1 >= 0) neighbours.add(nodeArray[node.gridY][node.gridX - 1]);
         // Right
-        if(node.gridX + 1 <= nodeArray[0].length) neighbours.add(nodeArray[node.gridX + 1][node.gridY]);
+        if(node.gridX + 1 <= GRID_MAX_DEPTH_X) neighbours.add(nodeArray[node.gridY][node.gridX + 1]);
 
         return neighbours;
     }
@@ -97,18 +77,13 @@ public class Finder {
 
     // Main function
     public static boolean pathFinder(String maze) {
+
         // Variables
         String[][] mazeRepresentation = to2dim(maze, "\n", "");
         Node[][] nodeArray = toNodeArray(mazeRepresentation);
 
         Node mapStartNode = nodeArray[0][0];
         Node mapExitNode = nodeArray[nodeArray.length - 1][nodeArray[0].length - 1];
-
-
-        // For debugging purpose
-        System.out.println(Arrays.deepToString(mazeRepresentation));
-
-        // TODO: Build a search algo
 
         ArrayList<Node> openSet = new ArrayList<>();
         ArrayList<Node> closedSet = new ArrayList<>();
@@ -129,10 +104,26 @@ public class Finder {
 
             // Check if we find the exit
             if (currentNode == mapExitNode) {
-                break;
+                return true;
             }
 
             // Check for neighbours
+            for (Node neighbour :
+                    getNeighbours(currentNode, nodeArray)) {
+                if (!neighbour.walkable || closedSet.contains(neighbour)) {
+                    continue;
+                }
+                int newMovementCostToNeighbour = currentNode.gCost + getDistance(currentNode, neighbour);
+                if(newMovementCostToNeighbour < neighbour.gCost || !openSet.contains(neighbour)) {
+                    neighbour.gCost = newMovementCostToNeighbour;
+                    neighbour.hCost = getDistance(neighbour, mapExitNode);
+                    neighbour.parent = currentNode;
+
+                        if(!openSet.contains(neighbour)) {
+                            openSet.add(neighbour);
+                        }
+                }
+            }
 
         }
 
