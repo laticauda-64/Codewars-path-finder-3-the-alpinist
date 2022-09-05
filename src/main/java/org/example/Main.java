@@ -41,7 +41,14 @@ public class Main {
                     "000000\n"+
                     "000010\n"+
                     "000109\n"+
-                    "001010";
+                    "001010",
+
+                h = "000000\n"+
+                    "011011\n"+
+                    "003040\n"+
+                    "003040\n"+
+                    "003009\n"+
+                    "000100";
 
         System.out.println(Finder.pathFinder(a));
         System.out.println(Finder.pathFinder(b));
@@ -50,6 +57,7 @@ public class Main {
         System.out.println(Finder.pathFinder(e));
         System.out.println(Finder.pathFinder(f));
         System.out.println(Finder.pathFinder(g));
+        System.out.println(Finder.pathFinder(h));
 
     }
 }

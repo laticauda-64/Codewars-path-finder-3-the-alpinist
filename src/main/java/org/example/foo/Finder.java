@@ -1,6 +1,7 @@
 package org.example.foo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class Finder {
@@ -9,7 +10,7 @@ public class Finder {
 
     // Get distance between two points with one of the four cardinal directions (i.e. North, East, South, West) possible
     public static int getDistance(Node nodeA, Node nodeB) {
-            return (Math.abs((nodeA.gridX - nodeB.gridX)) + Math.abs((nodeA.gridY - nodeB.gridY)));
+            return (Math.abs((nodeA.gridX - nodeB.gridX)) + Math.abs((nodeA.gridY - nodeB.gridY)) + nodeB.climbCost);
     }
 
     public static ArrayList<Node> getNeighbours(Node node, Node[][] nodeArray) {
@@ -105,7 +106,22 @@ public class Finder {
             // Check if we find the exit
             if (currentNode == mapExitNode) {
                 retracePath(mapStartNode, mapExitNode);
-                return path.size();
+
+                // Debug the path
+//                StringBuilder pathToString = new StringBuilder();
+//                pathToString.append("Node n°0: Pos: x"+ mapStartNode.gridX + " y" + mapStartNode.gridY + "\n");
+//
+//                for (int i = 0; i < path.size(); i++) {
+//                    pathToString.append("Node n°" + (i+1) + ": Pos: x"+ path.get(i).gridX + " y" + path.get(i).gridY + "\n");
+//                }
+//
+//                System.out.println(pathToString);
+                int totalClimbCost = (0 - mapStartNode.climbCost - mapExitNode.climbCost);
+                for (int i = 0; i <path.size() - 1; i++) {
+                    totalClimbCost += path.get(i).climbCost * 2;
+                }
+
+                return Math.abs(totalClimbCost);
             }
 
             // Check for neighbours
@@ -134,8 +150,3 @@ public class Finder {
 
 
 }
-
-
-// TODO:      [x] - Attribuer un "cout" à chaque node lors de la transformation de la grille en nodes.
-//            [] - Recalculer les distances en tenant compte du nouveau système (getDistance)
-//              [] - Choisir le chemin le moins couteux
